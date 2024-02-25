@@ -46,7 +46,7 @@
                         <input type="text" class="form-control @error('postal_code') is-invalid @enderror nagoyameshi-login-input" name="postal_code" required placeholder="150-0043">
                     </div>
                 </div>
-                        
+
                 <div class="form-group row">
                     <label for="address" class="col-md-5 col-form-label text-md-left">住所<span class="ml-1 nagoyameshi-require-input-label"><span class="nagoyameshi-require-input-label-text">必須</span></span></label>
 

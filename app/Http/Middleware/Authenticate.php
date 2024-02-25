@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
@@ -14,8 +15,7 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
-        }
+        
+        return $request->expectsJson() ? null : route('login');
     }
 }

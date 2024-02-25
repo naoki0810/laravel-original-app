@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 
@@ -12,32 +13,29 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $shops = Shop::all();
+  
 
-        return view('shops.index', compact('shops'));
-    }
+        $keyword = $request->keyword;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        if ($request->category !== null) {
+            $shops = Shop::where('category_id', $request->category)->sortable()->paginate(60);
+            $total_count = Shop::where('category_id', $request->category)->count();
+            $category = Category::find($request->category);
+        } elseif ($keyword !== null) {
+            $shops = Shop::where('name', 'like', "%{$keyword}%")->sortable()->paginate(60);
+            $total_count = $shops->total();
+            $category = Category::find('');
+        } else {
+            $shops = Shop::sortable()->paginate(60);
+            $total_count = "";
+            $category = Category::find('');
+        }
+        $categories = Category::all();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+
+        return view('shops.index', compact('shops', 'category', 'categories', 'total_count', 'keyword'));
     }
 
     /**
@@ -48,40 +46,8 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        return view('shops.show', compact('shop'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Shop  $shop
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Shop $shop)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Shop  $shop
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Shop $shop)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Shop  $shop
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Shop $shop)
-    {
-        //
+        $reviews = $shop->reviews()->get();
+        
+        return view('shops.show', compact('shop', 'reviews'));
     }
 }

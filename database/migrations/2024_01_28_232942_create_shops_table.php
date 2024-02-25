@@ -22,9 +22,9 @@ return new class extends Migration
             $table->integer('max_price')->unsigned();
             $table->time('opening_time');
             $table->time('closing_time');
-            $table->string('regular_holiday');
-            $table->string('postal_code')->default('');
-            $table->text('address');
+            $table->string('regular_holiday', 10);
+            $table->string('postal_code', 10)->default('');
+            $table->string('address');
             $table->timestamps();
         });
     }
