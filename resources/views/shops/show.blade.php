@@ -7,7 +7,7 @@
                 <h1 class="">
                     {{ $shop->name }}
                 </h1>
-                <a href="{{ route('shops.index') }}">戻る</a>
+                <a href="{{ route('shops.index') }}" class="show-back"><i class="fa-solid fa-backward"></i>戻る</a>
             </div>
 
             <div class="col-5">
@@ -33,7 +33,7 @@
                     <hr>
 
                     <p class="">
-                        予算：￥{{ $shop->min_price }}〜￥{{ $shop->max_price }}
+                        予算：{{ $shop->min_price }}円〜{{ $shop->max_price }}円
                     </p>
                     <hr>
 

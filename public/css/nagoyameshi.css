@@ -234,7 +234,31 @@ label {
 }
 
 .index-top {
-  color: blue;
+  color: #6f4b3e;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.show-back {
+  color: #6f4b3e;
+  font-weight: 400;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.breadcrumb li:not(:last-of-type)::after {
+  margin: 0 .6em; /* 記号の左右の余白 */
+  color: #777; /* 記号の色 */
+}
+
+.breadcrumb a {
+  color: inherit;
   text-decoration: none;
 }
 
@@ -317,4 +341,13 @@ label {
 
 .nagoyameshi-star-rating[data-rate="0"]::after {
   width: 0%;
+}
+
+.sortablelink {
+  color: #000000;
+}
+
+.reservation-shop-name {
+  color: #191919;
+  font-weight: bold;
 }

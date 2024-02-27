@@ -15,8 +15,6 @@ class ShopController extends Controller
      */
     public function index(Request $request)
     {
-  
-
         $keyword = $request->keyword;
 
         if ($request->category !== null) {
@@ -26,11 +24,11 @@ class ShopController extends Controller
         } elseif ($keyword !== null) {
             $shops = Shop::where('name', 'like', "%{$keyword}%")->sortable()->paginate(60);
             $total_count = $shops->total();
-            $category = Category::find('');
+            $category = null;        
         } else {
             $shops = Shop::sortable()->paginate(60);
             $total_count = "";
-            $category = Category::find('');
+            $category = null;
         }
         $categories = Category::all();
 

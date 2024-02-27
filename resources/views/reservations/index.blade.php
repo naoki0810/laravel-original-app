@@ -24,14 +24,15 @@
     </div>
 
     <div class="container nagoyameshi-container pb-5">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center pt-4">
             <div class="col-xxl-6 col-xl-7 col-lg-8 col-md-10">
-                <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('mypage') }}">ホーム</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">予約一覧</li>
+            
+                <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="{{ route('mypage') }}">マイページ</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">予約一覧</li>
                     </ol>
-                </nav>
+                  </nav>
 
                 <h1 class="mb-3 text-center">予約一覧</h1>
 
@@ -60,7 +61,7 @@
                         @foreach ($reservations as $reservation)
                             <tr>
                                 <td>
-                                    <a href="{{ route('shops.show', $reservation->shop) }}">
+                                    <a class="reservation-shop-name" href="{{ route('shops.show', $reservation->shop) }}">
                                         {{ $reservation->shop->name }}
                                     </a>
                                 </td>
