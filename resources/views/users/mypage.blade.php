@@ -6,7 +6,9 @@
             <h1>マイページ</h1>
 
             @if (session('flash_message'))
-                <p>{{ session('flash_message') }}</p>
+                <div class="alert alert-info" role="alert">
+                    <p class="mb-0">{{ session('flash_message') }}</p>
+                </div>
             @endif
 
             <hr>

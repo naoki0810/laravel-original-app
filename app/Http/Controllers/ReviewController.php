@@ -21,6 +21,12 @@ class ReviewController extends Controller
             'content' => 'required'
         ]);
 
+        $user = Auth::user();
+        $subscribed = $user->subscribed('premium_plan');
+        if (!$subscribed) {
+            return back()->with('flash_message', 'レビューを書くには有料会員登録が必要です。');
+        }
+
         $review = new Review();
         $review->title = $request->input('title');
         $review->content = $request->input('content');

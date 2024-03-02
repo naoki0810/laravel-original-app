@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Laravel\Cashier\Cashier;
+use Laravel\Cashier\Subscription;
 
 class ShopController extends Controller
 {
@@ -24,7 +28,7 @@ class ShopController extends Controller
         } elseif ($keyword !== null) {
             $shops = Shop::where('name', 'like', "%{$keyword}%")->sortable()->paginate(60);
             $total_count = $shops->total();
-            $category = null;        
+            $category = null;
         } else {
             $shops = Shop::sortable()->paginate(60);
             $total_count = "";
@@ -45,7 +49,10 @@ class ShopController extends Controller
     public function show(Shop $shop)
     {
         $reviews = $shop->reviews()->get();
-        
-        return view('shops.show', compact('shop', 'reviews'));
+
+        $user = Auth::user();
+        $subscribed = $user->subscribed('premium_plan');
+
+        return view('shops.show', compact('shop', 'reviews', 'subscribed'));
     }
 }
