@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "encore/laravel-admin": "^1.8",
+        "fakerphp/faker": "^1.23",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^3.3",
         "kyslik/column-sortable": "^6.5",
@@ -17,7 +18,6 @@
         "fzaninotto/faker": "^1.9"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "*",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
@@ -64,6 +64,9 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true
+        },
+        "platform": {
+            "php": "8.3.0"
         }
     },
     "minimum-stability": "stable",
