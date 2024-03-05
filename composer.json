@@ -14,8 +14,7 @@
         "laravel/cashier": "^14.14",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7",
-        "fzaninotto/faker": "^1.9"
+        "laravel/tinker": "^2.7"
     },
     "require-dev": {
         "laravel/breeze": "*",
