@@ -36,6 +36,7 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script>
     $(function() {
+        console.log('hello');
         // Create a Stripe client.
         const stripe = Stripe('{{ env('STRIPE_KEY') }}');
 
