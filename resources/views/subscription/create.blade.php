@@ -36,12 +36,17 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script>
     $(function() {
-        console.log('hello');
+        console.log('hello1');
         // Create a Stripe client.
         const stripe = Stripe('{{ env('STRIPE_KEY') }}');
+        console.log('hello2');
+
+        
 
         // Create an instance of Elements.
         const elements = stripe.elements();
+        console.log('hello3');
+
 
         // Custom styling can be passed to options when creating an Element.
         // (Note that this demo uses a wider set of styles than the guide below.)
@@ -60,16 +65,24 @@
             iconColor: '#fa755a'
         }
         };
+        console.log('hello4');
+
 
         // Create an instance of the card Element.
         const cardElement = elements.create('card', {style: style});
+        console.log('hello5');
+
 
         // Add an instance of the card Element into the `card-element` <div>.
         cardElement.mount('#card-element');
+        console.log('hello6');
+
 
         const cardHolderName = $("#card-holder-name");
         const cardButton     = $("#card-button");
         const clientSecret   = cardButton.data('secret');
+        console.log('hello7');
+
 
         cardButton.on('click', async (e) => {
             cardButton.prop('disabled', true);
@@ -81,13 +94,19 @@
                     }
                 }
             );
+        console.log('hello9');
+
 
             if (error) {
                 // ユーザーに"error.message"を表示する…
                 cardButton.prop('disabled', false);
+        console.log('hello10');  
+
             } else {
                 // カードの検証に成功した…
                 cardButton.prop('disabled', false);
+        console.log('hello11');
+
 
                 // 支払い方法識別子
                 const form = $('#payment-form');
@@ -96,6 +115,7 @@
 
                 form.submit();
             }
+            
         });
     })
 </script>
