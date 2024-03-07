@@ -51,7 +51,12 @@ class ShopController extends Controller
         $reviews = $shop->reviews()->get();
 
         $user = Auth::user();
-        $subscribed = $user->subscribed('premium_plan');
+        
+        if ($user) {
+        $subscribed = $user->subscribed('premium_plan');   
+        }else {
+            $subscribed = '';
+        }
 
         return view('shops.show', compact('shop', 'reviews', 'subscribed'));
     }

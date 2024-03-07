@@ -36,28 +36,31 @@
 
             <hr>
 
-            <div class="container">
-                <div class="d-flex justify-content-between">
-                    <div class="row">
-                        <div class="col-2 d-flex align-items-center">
-                            <i class="fas fa-shop fa-3x"></i>
-                        </div>
-                        <div class="col-9 d-flex align-items-center ms-2 mt-3">
-                            <div class="d-flex flex-column">
-                                <label for="user-name">予約一覧</label>
-                                <p>予約情報を確認できます</p>
+            @if ($subscribed)
+                <div class="container">
+                    <div class="d-flex justify-content-between">
+                        <div class="row">
+                            <div class="col-2 d-flex align-items-center">
+                                <i class="fas fa-shop fa-3x"></i>
+                            </div>
+                            <div class="col-9 d-flex align-items-center ms-2 mt-3">
+                                <div class="d-flex flex-column">
+                                    <label for="user-name">予約一覧</label>
+                                    <p>予約情報を確認できます</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <a href="{{ route('reservations.index') }}">
-                            <i class="fas fa-chevron-right fa-2x"></i>
-                        </a>
+                        <div class="d-flex align-items-center">
+                            <a href="{{ route('reservations.index') }}">
+                                <i class="fas fa-chevron-right fa-2x"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <hr>
+                <hr>
+            @endif
+
 
             <div class="container">
                 <div class="d-flex justify-content-between">
@@ -82,7 +85,7 @@
 
             <hr>
 
-            @if (! $subscribed)
+            @if (!$subscribed)
                 <div class="container">
                     <div class="d-flex justify-content-between">
                         <div class="row">
