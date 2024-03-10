@@ -13,7 +13,7 @@
         {{-- Font Awesome --}}
         <script src="https://kit.fontawesome.com/c9c99dab48.js" crossorigin="anonymous"></script>
 
-        <link href="{{ asset('css/nagoyameshi.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/nagoyameshi.css') }}" rel="stylesheet">
     </head>
 
     <body>
