@@ -26,13 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (config('app.env') === 'production') { //追記
-            URL::forceScheme('https');
-        }
-        
+      
         Paginator::useBootstrap();
         if (App::environment(['production'])) { 
-            URL::forceScheme('https');
+            URL::forceScheme('http');
         }
     }
 }
