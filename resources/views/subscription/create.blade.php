@@ -37,6 +37,7 @@
 <script>
     $(function() {
         // Create a Stripe client.
+
         const stripe = Stripe('{{ env('STRIPE_KEY') }}');        
 
         // Create an instance of Elements.

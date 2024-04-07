@@ -2,18 +2,49 @@
 
 @section('content')
     <div class="container pt-4">
+
         <div class="row justify-content-center">
-            <div class="offset-1">
+            <div class="col-5">
                 @if (session('flash_message'))
                     <div class="alert alert-info" role="alert">
                         <p class="mb-0">{{ session('flash_message') }}</p>
                     </div>
                 @endif
-                <h1 class="">
+                <h1 id="name" class="">
                     {{ $shop->name }}
                 </h1>
-                <a href="{{ route('shops.index') }}" class="show-back"><i class="fa-solid fa-backward"></i>戻る</a>
+                <a href="#" onclick="history.back()" class="show-back"><i class="fa-solid fa-backward"></i>戻る</a>
             </div>
+            <div class="col-2 offset-4 mt-4">
+                @if (Auth::user()->favorite_shops()->where('shop_id', $shop->id)->exists())
+                    <a href="{{ route('favorites.destroy', $shop->id) }}"
+                        class="btn nagoyameshi-favorite-button text-favorite w-100"
+                        onclick="event.preventDefault(); document.getElementById('favorites-destroy-form').submit();">
+                        <i class="fa fa-heart"></i>
+                        お気に入り解除
+                    </a>
+                @else
+                    <a href="{{ route('favorites.store', $shop->id) }}"
+                        class="btn nagoyameshi-favorite-button text-favorite w-100"
+                        onclick="event.preventDefault(); document.getElementById('favorites-store-form').submit();">
+                        <i class="fa fa-heart"></i>
+                        お気に入り
+                    </a>
+                @endif
+
+                <form id="favorites-destroy-form" action="{{ route('favorites.destroy', $shop->id) }}" method="POST"
+                    class="d-none">
+                    @csrf
+                    @method('DELETE')
+                </form>
+                <form id="favorites-store-form" action="{{ route('favorites.store', $shop->id) }}" method="POST"
+                    class="d-none">
+                    @csrf
+                </form>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
 
             <div class="col-5">
                 @if ($shop->image)
@@ -62,12 +93,22 @@
                         <p class="">
                             住所：〒{{ $shop->postal_code }}
                         </p>
-                        <p class="ms-2">
+                        <p id="addressInput" class="ms-2">
                             {{ $shop->address }}
                         </p>
                     </div>
                     <hr>
 
+                </div>
+            </div>
+        </div>
+
+        {{-- ここに地図を表示 --}}
+        <div class="row justify-content-center">
+            <div class="offset-1">
+                <div class="col-md-11">
+                    <hr>
+                    <div id="map" style="height:500px;"></div>
                 </div>
             </div>
         </div>
@@ -182,4 +223,11 @@
             </div>
         @endif
     </div>
+
+    <script src="{{ asset('/js/result.js') }}"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyBvQqRbDB5sw11t3bL8eGGjNTZa5XodSMs&callback=initMap"
+        async defer>
+    </script>
+
 @endsection

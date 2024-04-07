@@ -29,19 +29,8 @@ class AppServiceProvider extends ServiceProvider
       
         Paginator::useBootstrap();
 
-        // if (app()->isProduction()) {
-        //     URL::forceScheme('https');
-        // }
-        // if (app()->isLocal()) {
-        //     URL::forceScheme('http');           
-        // }
-        
-        if (request()->isSecure()) {
+        if (App::environment(['production'])) {
             URL::forceScheme('https');
-        }
-
-        // if (App::environment(['production'])) { 
-        //     URL::forceScheme('https');
-        // }
+        }        
     }
 }

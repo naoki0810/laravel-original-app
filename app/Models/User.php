@@ -55,27 +55,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Review::class);
     }
 
-        /**
-     * ユーザーに紐づいているサブスクリプションを返す
-     */
-    public function products() {
-        $products = [];
-        foreach ($this->subscriptions()->get() as $subscription) {
-            $priceId = $subscription->stripe_plan;
-
-            // price id から plan を取得
-            $plan = Plan::retrieve($priceId);
-            // prod id から product を取得
-            $product =Product::retrieve($plan->product);
-
-            // dashboardで設定したメタデータを取得
-            $localName           = $product->metadata->localName;
-            $product->cancelled  = $this->subscription($localName)->cancelled();
-
-            $products[] = $product;
-        }
-
-        return $products;
+    public function favorite_shops() {
+        return $this->belongsToMany(Shop::class)->withTimestamps();
     }
 
     public function reservation()

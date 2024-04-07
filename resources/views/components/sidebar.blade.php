@@ -1,10 +1,12 @@
 <div class="container">
-    <div class="row">
-        @foreach ($categories as $category)
-            <div>
-                <a href="{{ route('shops.index', ['category' => $category->id]) }}"
-                    class="btn btn-light nagoyameshi-sidebar-category-label">{{ $category->name }}</a>
-            </div>
-        @endforeach
+    <div class="row cp_ipselect cp_sl01">
+        <select onChange="location.href=value;">
+            <option value="">ジャンルを選択</option>
+            @foreach ($categories as $category)
+                <option value="{{ route('shops.index', ['category' => $category->id]) }}">
+                    {{ $category->name }}
+                </option>
+            @endforeach
+        </select>
     </div>
 </div>
